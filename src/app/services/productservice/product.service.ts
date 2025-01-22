@@ -9,8 +9,8 @@ import { catchError } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  catbaseUrl:string='assets/Apis/data.json';
-  createprdctUrl:string='assets/Apis/addprdct.json'
+  catbaseUrl:string='assets/Apis/cat.json';
+  getprdctUrl:string='assets/Apis/addprdct.json'
 
   constructor(private httpclient: HttpClient) { }
 
@@ -21,12 +21,12 @@ export class ProductService {
   }
 
   getProduct(){
-    return this.httpclient.get<any[]>(this.createprdctUrl);
+    return this.httpclient.get<any[]>(this.getprdctUrl);
   }
 
  
   saveProduct(obj: any): Observable<any> {
-    return this.httpclient.post<any>('https://dummyjson.com/products/add', obj);
+    return this.httpclient.post<any>(this.getprdctUrl, obj);
 }
 
     

@@ -1,50 +1,35 @@
  <div class="row m-2">
   <div class="d-flex">
-    <!-- Product List Section -->
-    <div [ngClass]="isSidePanalVisible ? 'col-8' : 'col-12'" class="col-8">
-      <div class="card h-auto">
-        <div class="card-header bg-light text-dark">
-          <div class="row">
-            <div class="col-6 h6">Product List</div>
-            <div class="col-6 text-end">
-              <button class='btn btn-sm btn-success' (click)="openSidepanal()">New</button>
-            </div>
-          </div>
+<!-- Product List Section -->
+<div [ngClass]="isSidePanalVisible ? 'col-8' : 'col-12'" class="col-8">
+  <div class="card h-auto">
+    <div class="card-header bg-light text-dark">
+      <div class="row">
+        <div class="col-6 h6">Product List</div>
+        <div class="col-6 text-end">
+          <button class="btn btn-sm btn-success" (click)="openSidepanal()">New</button>
         </div>
-        <div class="container my-3">
-          <div class="d-flex flex-wrap">
-            <!-- First Card -->
-            <div class="card m-2" style="width: 18rem;">
-              <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-              <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-              </div>
+      </div>
+    </div>
+    <div class="container my-3">
+      <!-- Bootstrap Row -->
+      <div class="row">
+        <!-- Loop through the product list -->
+        <div class="col-md-3 mb-4" *ngFor="let product of prdList">
+          <!-- Card -->
+          <div class="card h-100">
+            <img class="card-img-top" [src]="product.productImageUrl" alt="Card image" style="width:100%">
+            <div class="card-body">
+              <h4 class="card-title">{{ product.productName }}</h4>
+              <p class="card-text">{{ product.categoryName }}</p>
+              <a href="#" class="btn btn-primary">See Profile</a>
             </div>
-            <!-- Second Card -->
-            <div class="card m-2" style="width: 18rem;">
-              <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-              <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-              </div>
-            </div>
-            <!-- Third Card -->
-            <div class="card m-2" style="width: 18rem;">
-              <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
-              <div class="card-body">
-                <h4 class="card-title">John Doe</h4>
-                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
-              </div>
-            </div>
-            <!-- Additional Cards can be added here -->
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
     <!-- New Product Section -->
     <div class="col-4 mx-2" *ngIf="isSidePanalVisible">
@@ -83,9 +68,15 @@
               </select>
               
             </div>
+
             <div class="col-6 p-2">
               <label for="deliveryTime">delivery time</label>
               <input type="text" class="form-control" [(ngModel)]="productObj.deliveryTimeSpan">
+            </div>
+
+            <div class="col-6 p-2">
+              <label for="deliveryTime">product Url</label>
+              <input type="text" class="form-control" [(ngModel)]="productObj.productImageUrl">
             </div>
 
 

@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProductsComponent implements OnInit{
   isSidePanalVisible:boolean=false;
   catList!:any[];
+  prdList!:any[];
   productObj:any={
     "productId": 0,
   "productSku": " ",
@@ -32,6 +33,7 @@ export class ProductsComponent implements OnInit{
   
   ngOnInit() {
     this.getAllCat()
+    this.getAllProducts()
     
   }
 
@@ -40,9 +42,17 @@ export class ProductsComponent implements OnInit{
       (data: any) => this.catList = data.data,  //to accssess data.json
       error => console.error('Error fetching categories:', error)
     );
-  
-    
+  };
+
+  getAllProducts() {
+    this.prdservice.getProduct().subscribe(
+      (data: any) => this.prdList= data.data ,  //to accssess data.json
+      error => console.error('Error fetching categories:', error)
+    );
+
   }
+
+
 
 
 
@@ -67,7 +77,8 @@ export class ProductsComponent implements OnInit{
             panelClass: ['snackbar-success'],
             horizontalPosition: 'center',
             verticalPosition: 'top',
-          });
+          })
+          this.getAllProducts();
 
           // Reset the product object or form
           this.productObj = {}; // Resetting the product object
