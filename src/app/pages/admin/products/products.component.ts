@@ -16,7 +16,9 @@ export class ProductsComponent implements OnInit{
   isSidePanalVisible:boolean=false;
   catList!:any[];
   prdList!:any[];
+
   productObj:any={
+  
     "productId": 0,
   "productSku": " ",
   "productName": " ",
@@ -28,6 +30,8 @@ export class ProductsComponent implements OnInit{
   "categoryId": 2147483647,
   "productImageUrl": " ",
   }
+
+  
 
   constructor( private prdservice:ProductService,private snackBar: MatSnackBar){}//must add http client intp app.config.ts add provideHttpclient(), make a service to call api of categoties[producr]
   
@@ -43,6 +47,7 @@ export class ProductsComponent implements OnInit{
       error => console.error('Error fetching categories:', error)
     );
   };
+  
 
   getAllProducts() {
     this.prdservice.getProduct().subscribe(
@@ -73,24 +78,19 @@ export class ProductsComponent implements OnInit{
         if (res) {
           // Show success notification
           this.snackBar.open('Added new product successfully', 'Close', {
-            duration: 3000,
             panelClass: ['snackbar-success'],
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
-          })
+            horizontalPosition: 'center', // Center horizontally
+            verticalPosition: 'top',     // At the top of the page
+          });
           this.getAllProducts();
-
-          // Reset the product object or form
-          this.productObj = {}; // Resetting the product object
-          // Optionally, reset a form group if using Angular forms
-          // this.productForm.reset();
+          // Reset the product form
+          // this.productForm?.reset();
         } else if (res.error) {
           // Show error notification
           this.snackBar.open(res.message || 'Failed to add product', 'Close', {
-            duration: 3000,
             panelClass: ['snackbar-error'],
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
+            horizontalPosition: 'center', // Center horizontally
+            verticalPosition: 'top',     // At the top of the page
           });
         }
       },
@@ -99,14 +99,90 @@ export class ProductsComponent implements OnInit{
         this.snackBar.open('An error occurred while saving the product', 'Close', {
           duration: 3000,
           panelClass: ['snackbar-error'],
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
+          horizontalPosition: 'center', // Center horizontally
+          verticalPosition: 'top',     // At the top of the page
         });
       },
       complete: () => {
         console.log('Product save operation completed');
+        console.log(this.productObj);
       },
     });
+  }
+  
+
+
+
+
+
+  onedit(product:any){
+    this.productObj=product;
+    this.openSidepanal();
+
+  };
+
+  onUpdate(){
+    this.prdservice.updateProduct().subscribe({
+      next: (res: any) => {
+        if (res) {
+          // Show success notification
+          this.snackBar.open('Updated  product successfully', 'Close', {
+            panelClass: ['snackbar-success'],
+            horizontalPosition: 'center', // Center horizontally
+            verticalPosition: 'top',     // At the top of the page
+          });
+          this.getAllProducts();
+          // Reset the product form
+        } else if (res.error) {
+          // Show error notification
+          this.snackBar.open(res.message || 'Failed to update product', 'Close', {
+            panelClass: ['snackbar-error'],
+            horizontalPosition: 'center', // Center horizontally
+            verticalPosition: 'top',     // At the top of the page
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Error updating product:', err);
+        this.snackBar.open('An error occurred while updaing the product', 'Close', {
+          duration: 3000,
+          panelClass: ['snackbar-error'],
+          horizontalPosition: 'center', // Center horizontally
+          verticalPosition: 'top',     // At the top of the page
+        });
+      },
+      complete: () => {
+        console.log('Product save operation completed');
+        console.log(this.productObj);
+      },
+    });
+
+  };
+
+
+  ondelete(id:any){
+    let isdelete=confirm('are u sure u want to delete it');
+    if(isdelete){
+      this.prdservice.deleteprdct(this.productObj.productId).subscribe((res:any)=>{
+        if(res.result){
+          this.snackBar.open('deleted product successfully', 'Close', {
+            panelClass: ['snackbar-success'],
+            horizontalPosition: 'center', // Center horizontally
+            verticalPosition: 'top',     // At the top of the page
+          });
+
+        }else{
+          this.snackBar.open('An error occurred while updaing the product', 'Close', {
+            duration: 3000,
+            panelClass: ['snackbar-error'],
+            horizontalPosition: 'center', // Center horizontally
+            verticalPosition: 'top',     // At the top of the page
+          });
+
+        }
+      })
+
+    }
   }
 
   

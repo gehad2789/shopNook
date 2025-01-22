@@ -1,11 +1,11 @@
- <div class="row m-2">
+ <div class="row m-2" data-bs-theme="dark">
   <div class="d-flex">
 <!-- Product List Section -->
 <div [ngClass]="isSidePanalVisible ? 'col-8' : 'col-12'" class="col-8">
   <div class="card h-auto">
     <div class="card-header bg-light text-dark">
       <div class="row">
-        <div class="col-6 h6">Product List</div>
+        <div class="col-6 h4">Product List</div>
         <div class="col-6 text-end">
           <button class="btn btn-sm btn-success" (click)="openSidepanal()">New</button>
         </div>
@@ -18,11 +18,19 @@
         <div class="col-md-3 mb-4" *ngFor="let product of prdList">
           <!-- Card -->
           <div class="card h-100">
-            <img class="card-img-top" [src]="product.productImageUrl" alt="Card image" style="width:100%">
+            <img class="card-img-top h-75" [src]="product.productImageUrl" alt="Card image" style="width:100%">
             <div class="card-body">
               <h4 class="card-title">{{ product.productName }}</h4>
+
               <p class="card-text">{{ product.categoryName }}</p>
-              <a href="#" class="btn btn-primary">See Profile</a>
+
+              <div class="justify-content-between d-flex">
+                <a class="btn btn-success " (click)="onedit(product)">Edit</a>
+                <a  class="btn btn-danger mx-2" (click)="ondelete(product)">Delete</a>
+
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -44,7 +52,7 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-6 p-2">
+            <div class="col-6 p-2" >
               <label for="Nmame">Name</label>
               <input type="text" class="form-control" [(ngModel)]="productObj.productName">
             </div>
@@ -77,6 +85,7 @@
             <div class="col-6 p-2">
               <label for="deliveryTime">product Url</label>
               <input type="text" class="form-control" [(ngModel)]="productObj.productImageUrl">
+
             </div>
 
 
@@ -84,7 +93,8 @@
               <div class="col-12 ">
                 <label class="my-1">Product Description</label>
                 <textarea for="productDescription" [(ngModel)]="productObj.productDescription" class="w-100 "></textarea>
-              </div>
+
+               </div>
             </div>
 
 
@@ -94,7 +104,10 @@
 
               </div>
               <div class="col-6">
-                <button class="btn btn-success" (click)="onSaveprdct()">Crete Product</button>
+                <!--createproduct[if empty,else upate]-->
+                <button class="btn btn-success" *ngIf="productObj.productId==0" (click)="onSaveprdct()">Crete Product</button>
+                <button class="btn btn-success" *ngIf="productObj.productId!==0"  (click)="onUpdate()">Update Product</button>
+
 
 
               </div>
@@ -109,3 +122,4 @@
     </div>
   </div>
 </div>
+

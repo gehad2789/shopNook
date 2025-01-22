@@ -7,18 +7,20 @@
       <div class="collapse navbar-collapse" id="mynavbar">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">Link</a>
+            <a class="nav-link" href="javascript:void(0)" routerLink="/products"  >Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">Link</a>
+            <a class="nav-link" href="javascript:void(0)" routerLink="/cat">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">Link</a>
+            <a class="nav-link" href="javascript:void(0)">Home</a>
           </li>
+
         </ul>
+
         <form class="d-flex">
           <input class="form-control me-2 bg-light" type="text" placeholder="Search" >
-          <button class="btn btn-light" type="button" >Search</button>
+          <button class="btn btn-success" type="button" >Search</button>
         </form>
       </div>
     </div>
@@ -29,3 +31,4 @@
     <router-outlet></router-outlet>
   </div>
   
+  <router-outlet></router-outlet>
