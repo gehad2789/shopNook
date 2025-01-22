@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs';
+
 
 
 @Injectable({
@@ -22,11 +24,15 @@ export class ProductService {
     return this.httpclient.get<any[]>(this.createprdctUrl);
   }
 
-  saveProduct(obj:any){//send data
-    return this.httpclient.post<any[]>('https://fakestoreapi.com/products',obj);
+ 
+  saveProduct(obj: any): Observable<any> {
+    return this.httpclient.post<any>('https://dummyjson.com/products/add', obj);
+}
+
+    
 
 
-  }
+  
 
 
 }
