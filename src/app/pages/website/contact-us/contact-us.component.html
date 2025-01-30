@@ -1,0 +1,87 @@
+<section id="contact" class="contact-section">
+    <div class="container text-center" >
+      <h2 >Contact Us</h2>
+      <p class="pb-5">Have a question or need assistance? We're here to help! Reach out to us, and we'll get back to you as soon as possible.</p>
+      <div class="row">
+        <div class="col-md-6">
+          <form #contactForm="ngForm" (ngSubmit)="sendData(contactForm)">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Your Name"
+              id="name"
+              name="username"
+              [(ngModel)]="formData.username"
+              minlength="3"
+              #name="ngModel"
+               required>
+               <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                <div *ngIf="name.errors?.['required']">Name is required.</div>
+                <div *ngIf="name.errors?.['minlength']">
+                  Name must be at least 3 characters long.
+                </div>
+              </div>
+
+            </div>
+           
+
+
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Your Email"
+              id="email"
+              name="email"
+              [(ngModel)]="formData.email"
+              required
+               email
+              #email="ngModel"
+             >
+             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                <div *ngIf="email.errors?.['required']">Email is required.</div>
+                <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
+              </div>
+          
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" rows="5" placeholder="Your Message"
+              id="message"
+      name="message"
+      rows="5"
+      [(ngModel)]="formData.message"
+      required
+      minlength="10"
+      #message="ngModel"
+      ></textarea>
+
+      <div *ngIf="message.invalid && (message.dirty || message.touched)" class="text-danger">
+        <div *ngIf="message.errors?.['required']">Message is required.</div>
+        <div *ngIf="message.errors?.['minlength']">
+          Message must be at least 10 characters long.
+        </div>
+      </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="sendData(formData)">Send Message</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <h4>Visit Us</h4>
+            <p>123 Green Street, Suite 456<br>Cityville, ST 12345</p>
+          </div>
+          <div class="card">
+            <h4>Call Us</h4>
+            <p>+02 (123) 456-7890</p>
+          </div>
+          <div class="card">
+            <h4>Email Us</h4>
+            <p>{{'info@shoopnook5.com'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,15 @@
+.carousel-inner .row {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .carousel-inner .col-md-3 {
+    flex: 0 0 auto;
+    margin-right: 15px;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(1); /* Makes arrows white */
+  }
+  

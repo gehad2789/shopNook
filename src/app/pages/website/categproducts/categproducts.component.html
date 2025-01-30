@@ -1,1 +1,24 @@
-<p>categproducts works!</p>
+<div class="container my-3">
+  <div class="row">
+    <!-- Show a message if no products are found -->
+    <div *ngIf="filteredProducts.length === 0" class="text-center">
+      <p>No products found for this category.</p>
+    </div>
+
+    <!-- Loop through filtered products -->
+    <div class="col-md-3 mb-4" *ngFor="let product of filteredProducts">
+      <div class="card h-100">
+        <img
+          class="card-img-top h-75"
+          [src]="product.productImageUrl"
+          alt="Product image"
+          style="width: 100%"
+        />
+        <div class="card-body">
+          <h4 class="card-title">{{ product.productName }}</h4>
+          <p class="card-text">{{ product.categoryName }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

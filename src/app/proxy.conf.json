@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://freeapi.miniprojectideas.com/api/BigBasket/GetAllProductsByCategoryId?id=55",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

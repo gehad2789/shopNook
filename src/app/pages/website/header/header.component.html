@@ -1,0 +1,152 @@
+<header >
+    <nav class="navbar navbar-expand-lg navbar-light nav-yellow border-bottom border-top p-2">
+      <div class="container ">
+        <a class="navbar-brand fs-4 fw-bold">
+          <i class="fa fa-cart-shopping fs-4 " ></i>
+          <a class=" textBlur text-success p-2 h3 text-decoration-none " href="javascript:void(0)" routerLink="/shop">ShopNook</a>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+                  <a class="p-2 text-dark fw-semibold text-uppercase text-decoration-none" href="#" routerLink="/contact">Contact us</a>
+                  <a class="p-2 text-dark fw-semibold text-uppercase text-decoration-none" href="#" routerLink="/about">About us</a>
+               
+
+
+                      <!---cat dropdown-->
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black me-1" id="navbarDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              categories
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" *ngFor="let cat of catList; let index=index" 
+                (click)="navigate(cat.categoryId)"><!--to navigate to productcat page and with id to spesfic section[sec of cat clicked]-->
+                {{cat.categoryName}}</a></li>
+
+            </ul>
+          </li>
+
+            <!---empty cart-->
+            <ng-container *ngIf="cartlist==0">
+
+              <li class="nav-item" >
+                <a class="nav-link fw-semibold text-uppercase text-black me-1 hand">Contact us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"><i class="fa-solid fa-magnifying-glass fs-5" style="color: black;"></i></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown3" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i class="fa fa-cart-shopping fs-5 me-1" style="color: black;"></i>
+                  <span class="position-absolute translate-middle badge rounded-pill bg-danger">0</span>
+                </a>
+                <ul class="dropdown-menu menuOnLeft rounded-0 mt-2" aria-labelledby="navbarDropdown3" *ngIf="cartlist==0">
+                  <li>
+                    <p class="text-center mb-0">No Product Added to Cart</p>
+                  </li>
+                </ul>
+              </li>
+  
+  
+
+            </ng-container>
+
+            
+<!-- cart -->
+<ng-container *ngIf="cartlist.length !== 0">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fa fa-cart-shopping fs-5 me-1" style="color: #202122;"></i>
+      <span class="position-absolute translate-middle badge rounded-pill bg-danger">
+        {{cartlist.length}}
+      </span>
+    </a>
+    <ul class="dropdown-menu menuOnLeft rounded-0 mt-2" aria-labelledby="navbarDropdown3">
+      <li class="p-2" *ngFor="let cart of cartlist">
+        <div>
+          <div class="row">
+            <div class="col-md-4">
+              <img class="cartImg" [src]="cart.productImageUrl" alt="...">
+            </div>
+            <div class="col-md-6">
+              <div>
+                <a class="text-decoration-none text-black fw-semibold">
+                  <p class="m-0 p-0">{{cart.productShortName}}</p>
+                </a>
+                <p>{{cart.quantity}} <i class="fa-solid fa-xmark" style="color: #0d0d0d;"></i> {{cart.productPrice | currency:'INR'}}</p>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <button class="btn closeBtn float-end text-light" style="height: auto;" (click)="deleteprdfromcart(cart.cartId)"><i
+                class="fa fa-xmark "></i> </button>
+
+
+         
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="p-2">
+        <div class="w-100">
+          <div class="d-flex justify-content-between">
+            <h6>SubTotal :</h6>
+            <h6>{{'20' | currency}}</h6>
+          </div>
+         <div class="d-flex justify-content-evenly mt-3">
+
+          <div class="d-flex justify-content-center gap-2 mt-3">
+            <button class="btn btn-success btn-sm px-3 py-1 rounded">
+              View Cart
+            </button>
+            <button
+              class="btn btn-danger btn-sm px-3 py-1 rounded"
+              [routerLink]="['/check']"
+              routerLinkActive="router-link-active"
+            >
+              Checkout
+            </button>
+          </div>
+          
+
+</div>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+</ng-container>
+  
+
+
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle fw-semibold text-uppercase me-1" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="text-dark fw-bold"><i class="fa fa-user ms-3 me-1"></i>User</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item hand">Profile</a></li>
+                <li><a class="dropdown-item hand">Orders</a></li>
+              </ul>
+            </li>
+            <li class="nav-item ms-4">
+              <button class="btn btn-sm btn-danger logOutBtn"><i class="fa fa-sign-out" aria-hidden="true">
+                
+              </i></button>
+            </li>
+          </ul>
+
+
+
+
+          
+        </div>
+      </div>
+    </nav>
+  </header>

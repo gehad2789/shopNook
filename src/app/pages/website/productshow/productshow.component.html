@@ -1,0 +1,70 @@
+
+<div class="container-fluid  vh-100 ">
+    <div class="py-3  text-success">
+        <h1 class="text-center fs-1 fw-bold pt-5">We Bring The Market To Your Home</h1>
+      </div>
+      
+      <!-- Section 1: All Cats as Buttons -->
+        <p class="text-center pb-4 ">Discover our handpicked selection of top-rated products 
+          From must-have essentials to trendy favorites, find what you need to elevate your lifestyle</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3 p-4" >
+          <button class="btn btn-success btn-lg"  *ngFor="let cat of catList"(click)="navigate(cat.categoryId)" >
+            {{cat.categoryName}}</button>
+
+        </div>
+
+      <!-------------------if choosen cat isn't empty---------------------->
+      
+
+
+
+
+
+
+
+
+
+
+      <div class="card h-auto bg-light " *ngIf="filterByCategory.length!=0">
+
+        <div class="container my-3">
+          <!-- Bootstrap Row -->
+          <div class="row">
+            <!-- Loop through the product list -->
+            <div class="col-md-3 mb-4" *ngFor="let product of productsList">
+              <!-- Card -->
+              <div class="card h-100">
+                <img class="card-img-top h-75" [src]="product.productImageUrl" alt="Card image" style="width:100%">
+                <div class="card-body">
+                  <h4 class="card-title">{{ product.productName }}</h4>
+    
+                  <p class="card-text">{{ product.categoryName }}</p>
+                  <button class="btn btn-success" (click)="addtocart(product.productId)">Add to Cart</button>
+    
+
+    
+    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+          
+    
+
+
+      <!----------------------------------------------->
+
+
+
+
+
+      
+  </div>
+  <app-footer></app-footer>
+
+  <router-outlet></router-outlet>
+

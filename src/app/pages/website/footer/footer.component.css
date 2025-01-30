@@ -1,0 +1,54 @@
+        /* Ensure the HTML and body take up the full height of the viewport */
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #ffffff; /* White background */
+        }
+
+      
+        /* Main content area */
+        .main-content {
+            flex: 1; /* Allow the main content to grow and fill the remaining space */
+            color: #28a745; /* Green main text */
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #ffffff; /* White background */
+            color: #000000; /* Black text */
+            padding: 40px 0;
+            margin-top: auto; /* Push the footer to the bottom */
+            border-top: 1px solid #e0e0e0; /* Light gray border at the top */
+        }
+        .footer h5 {
+            color: #28a745; /* Green headings */
+            margin-bottom: 20px;
+        }
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+        .footer ul li a {
+            color: #000000; /* Black text for links */
+            text-decoration: none;
+        }
+        .footer ul li a:hover {
+            color: #28a745; /* Green on hover */
+        }
+        .footer .social-icons a {
+            color: #000000; /* Black icons */
+            font-size: 20px;
+            margin-right: 15px;
+        }
+        .footer .social-icons a:hover {
+            color: #28a745; /* Green on hover */
+        }
+        .footer .bottom-footer {
+            border-top: 1px solid #e0e0e0; /* Light gray border */
+            padding-top: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
