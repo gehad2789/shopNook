@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/productservice/product.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-categproducts',
@@ -15,7 +16,8 @@ export class CategproductsComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartserv:CartService
   ) {}
 
   ngOnInit() {
@@ -33,6 +35,24 @@ export class CategproductsComponent implements OnInit{
     });
 
   }
+
+   // Add product to cart
+   addtocart(product: any) {
+    let addtocartobj = {
+      // Data to be sent to the cart
+      CartId: 0,
+      CustId: 397,
+      ProductId: product.productId,
+      Quantity: 1,
+      AddedDate: new Date(),
+      productName: product.productName,
+      productImageUrl: product.productImageUrl,
+      productPrice: product.productPrice,
+    };
+    this.cartserv.addToCart(addtocartobj); // Add product to cart
+    console.log('Product added to cart');
+  }
+
 
 
 }

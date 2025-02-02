@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
 import { ProductService } from '../../../services/productservice/product.service';
+import { CartService } from '../../../services/cart.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-header',
@@ -12,6 +15,7 @@ import { ProductService } from '../../../services/productservice/product.service
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
+
   productsList:any[]=[];
   catList$!:Observable<any>;
   catList:any=[];
@@ -23,21 +27,22 @@ export class HeaderComponent implements OnInit {
   categories: Set<string> = new Set();
 
 
-  constructor( private prdservice:ProductService , private router:Router){
-    prdservice.cartupdated$?.subscribe((res:any)=>{
-      this.getcartdatabycusid();//trigger it whenever product added to be updated
-
-    })
+  constructor( private prdservice:ProductService , private router:Router, private carterv:CartService){
   }
 
   ngOnInit(): void {
     // this.getAllProducts()
+    this.getproductbycatid()
     this.getallcat()
+    //get cart list
+    this.cartlist=this.carterv.getCart()
 
-    this.prdservice.getAllProducts().subscribe((products) => {
-      this.products = products;
-      this.categories = new Set(products.map((p:any) => p.categoryName));
-    });
+        // Activate tooltips
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
+    
+
+
   };
 
 
@@ -47,11 +52,27 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  getproductbycatid(){
+    // In the CategoryProductsComponent, we extract the categoryId from the route and filter products accordingly
+    this.prdservice.getProduct().subscribe((products) => {
+      this.catList = Array.from(
+        new Set(products.map((product:any) => product.categoryName))
+      ).map((categoryName) => {
+        const category = products.find(
+          (product:any) => product.categoryName === categoryName
+        );
+        return { categoryId: category.categoryId, categoryName: categoryName };
+        /*To match products with their respective categories, we compare the categoryId of products with the categoryId in the categories list.
+For each category, we attach the products that belong to it*/
+      });
+    });
+  }
+
 
 
 
  getallcat(){
-  this.prdservice.getProduct().subscribe(
+  this.prdservice.getAllCat().subscribe(
     (data: any) => this.catList=data.data ,  //to accssess data.json
     error => console.error('Error fetching products:', error)
   );
@@ -62,39 +83,12 @@ export class HeaderComponent implements OnInit {
  };
  
 
-    //linked prdId at template 
-    addtocart(prodid:any){
-      let addtocartobj={//data come from api
-        "CartId": 0,
-        "CustId": 397,
-        "ProductId": prodid,
-        "Quantity": 1,
-        "AddedDate": new Date()
-      };
-      this.prdservice.addTocart(addtocartobj).subscribe(
-        (data: any) => console.log(data),  
-        error => console.error('Error fetching products:', error)
-      );
-     }
-  
-     getcartdatabycusid(){
-      this.prdservice.getcartDatabycustid(379).subscribe((res=>{
-        this.cartlist=res;
-        
-      }))
-     }
 
-     deleteprdfromcart(id:number){
-      this.prdservice.getcartDatabycustid(379).subscribe((res=>{
-        if(res){
-          this.cartlist=res;
-          this.prdservice.cartupdated$?.next(true)
-          alert('remover from cart')
   
-        }
-      }))
+
   
-     }
+  
+     
     
      
     

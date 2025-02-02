@@ -1,22 +1,29 @@
 <app-layout></app-layout>
-<div class="row bg-dark">
-    <div class="col-12" >
-        <table class=" table table-bordered " >
+<div class="row w-100 ">
+    <div class="table-responsive p-2 mx-2">
+        <table class="table table-striped table-bordered ">
             <thead>
                 <tr>
-                    <th> Sr Num</th>
-                    <th>cat Name</th>
+                    <th>Sr Num</th>
+                    <th>Category Name</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of products$|async ;let index=index">
-                    <td> {{index+1}}</td>
-                    <td> {{item.categoryName}}</td>
-
+                <tr *ngFor="let category of categories; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" (click)="removeCategory(category.id)">Remove</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    </div>
 
+    <!-- Add Category Form -->
+    <div class="p-2">
+        <input type="text" class="form-control d-inline w-50" placeholder="Enter category name" #categoryInput>
+        <button class="btn btn-success mx-2" (click)="addCategory(categoryInput.value); categoryInput.value = ''">Add</button>
+    </div>
+</div>
