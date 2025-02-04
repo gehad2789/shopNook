@@ -53,7 +53,7 @@ export class ProductshowComponent implements OnInit {
 new Map(...).values() → Removes duplicates because Map only keeps unique keys.
 Array.from(...) → Converts back to an array. */
   
-        this.productsList = uniqueProducts.sort(()=>Math.random()-0.5);
+        this.productsList = uniqueProducts.sort();
       },
       error => console.error('Error fetching products:', error)
     );
