@@ -2,7 +2,7 @@
 <div class="parent">
     <form class="main-login" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="left-login">
-            <h1>Login<br>And join our team</h1>
+            <h1>Login<br></h1>
             <img src="https://i.postimg.cc/YC13sX2Z/Astronaut-cuate.png" class="left-login-img" alt="astronaut image">
         </div>
 
@@ -36,6 +36,12 @@
                 </div>
 
                 <button class="btn-login" type="submit" [disabled]="form.invalid">Login</button>
+                
+                    <a class=" text-success text-start" href="/register"> register</a>
+
+
+                
+
             </div>
         </div>
     </form>

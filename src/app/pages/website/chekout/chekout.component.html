@@ -1,1 +1,405 @@
-<p>chekout works!</p>
+
+<div class="container p-4">
+
+    <div class="row">
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body">
+                    <ol class="activity-checkout mb-0 px-4 mt-3">
+                        <li class="checkout-item">
+                            <div class="avatar checkout-icon p-1">
+                              <div class="avatar-title rounded-circle">
+                                <i class="bx bxs-receipt text-white font-size-20"></i>
+                              </div>
+                            </div>
+                            <div class="feed-item-list">
+                              <div>
+                                <h5 class="font-size-16 mb-1">Billing Info</h5>
+                                <p class="text-muted text-truncate mb-4">Where are you from?</p>
+                                <div class="mb-3">
+                                  <form [formGroup]="billingForm" (ngSubmit)="onSubmit()" >
+                                    <div>
+                                      <div class="row">
+                                        <div class="col-lg-4">
+                                          <div class="mb-3">
+                                            <label class="form-label" for="billing-name">Name</label>
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="billing-name"
+                                              formControlName="name"
+                                              placeholder="Enter name"
+                                            />
+                                            <div *ngIf="billingForm.get('name')?.invalid && billingForm.get('name')?.touched" class="text-danger">
+                                              Name is required.
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                          <div class="mb-3">
+                                            <label class="form-label" for="billing-email-address">Email Address</label>
+                                            <input
+                                              type="email"
+                                              class="form-control"
+                                              id="billing-email-address"
+                                              formControlName="email"
+                                              placeholder="Enter email"
+                                            />
+                                            <div *ngIf="billingForm.get('email')?.invalid && billingForm.get('email')?.touched" class="text-danger">
+                                              Valid email is required.
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                          <div class="mb-3">
+                                            <label class="form-label" for="billing-phone">Phone</label>
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="billing-phone"
+                                              formControlName="phone"
+                                              placeholder="Enter Phone no."
+                                            />
+                                            <div *ngIf="billingForm.get('phone')?.invalid && billingForm.get('phone')?.touched" class="text-danger">
+                                              Valid phone number is required (10 digits).
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                          
+                                      <div class="mb-3">
+                                        <label class="form-label" for="billing-address">Address</label>
+                                        <textarea
+                                          class="form-control"
+                                          id="billing-address"
+                                          rows="3"
+                                          formControlName="address"
+                                          placeholder="Enter full address"
+                                        ></textarea>
+                                        <div *ngIf="billingForm.get('address')?.invalid && billingForm.get('address')?.touched" class="text-danger">
+                                          Address is required.
+                                        </div>
+                                      </div>
+                          
+                                      <div class="row">
+                                        <div class="col-lg-4">
+                                          <div class="mb-4 mb-lg-0">
+                                            <label for="country">Select a Country:</label>
+                                            <select
+                                              id="country"
+                                              formControlName="country"
+                                              (change)="onCountrySelect()"
+                                              class="form-control form-select"
+                                            >
+                                              <option value="" disabled>Choose a country</option>
+                                              <option *ngFor="let country of contriesList" [value]="country">
+                                                {{ country }}
+                                              </option>
+                                            </select>
+                                            <div *ngIf="billingForm.get('country')?.invalid && billingForm.get('country')?.touched" class="text-danger">
+                                              Country is required.
+                                            </div>
+                                          </div>
+                                        </div>
+                          
+                                        <div class="col-lg-4">
+                                          <div class="mb-4 mb-lg-0">
+                                            <div *ngIf="cities">
+                                              <label for="city">Select a City:</label>
+                                              <select
+                                                id="city"
+                                                formControlName="city"
+                                                class="form-control form-select"
+                                              >
+                                                <option value="" disabled>Choose a city</option>
+                                                <option *ngFor="let city of cities" [value]="city">
+                                                  {{ city }}
+                                                </option>
+                                              </select>
+                                              <div *ngIf="billingForm.get('city')?.invalid && billingForm.get('city')?.touched" class="text-danger">
+                                                City is required.
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                          
+                                        <div class="col-lg-4">
+                                          <div class="mb-0">
+                                            <label class="form-label" for="zip-code">Zip / Postal code</label>
+                                            <input
+                                              type="text"
+                                              class="form-control"
+                                              id="zip-code"
+                                              formControlName="zipCode"
+                                              placeholder="Enter Postal code"
+                                            />
+                                            <div *ngIf="billingForm.get('zipCode')?.invalid && billingForm.get('zipCode')?.touched" class="text-danger">
+                                              Valid zip code is required (5 digits).
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                          
+                                      <button type="click" class="btn btn-primary mt-3" (click)="showdetail()"
+                                       [disabled]="!billingForm.valid">Submit</button>                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          
+                          <li class="checkout-item" *ngIf="showDetails">
+                            <div class="avatar checkout-icon p-1">
+                              <div class="avatar-title rounded-circle">
+                                <i class="bx bxs-truck text-white font-size-20"></i>
+                              </div>
+                            </div>
+                            <div class="feed-item-list">
+                              <div >
+                                <h5 class="font-size-16 mb-1">Shipping Info</h5>
+                                <p class="text-muted text-truncate mb-4"></p>
+                                <div class="mb-3">
+                                  <div class="row">
+                                    <div class="col-lg-4 col-sm-6">
+                                      <div data-bs-toggle="collapse">
+                                        <label class="card-radio-label mb-0">
+                                          <input type="radio" name="address" id="info-address1" class="card-radio-input" checked />
+                                          <div class="card-radio text-truncate p-3">
+                                            <span class="fs-14 mb-4 d-block">{{billingForm.get('country').value}}</span>
+                                            <span class="fs-14 mb-2 d-block">{{ billingForm.get('city').value }}</span>
+    <span class="text-muted fw-normal text-wrap mb-1 d-block">{{ billingForm.get('address').value }}</span>
+    <span class="text-muted fw-normal d-block">{{ billingForm.get('phone').value }}</span>
+                                          </div>
+                                        </label>
+
+                                      </div>
+                                    </div>
+                          
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+
+
+
+                        <li class="checkout-item">
+                            <div class="avatar checkout-icon p-1">
+                                <div class="avatar-title rounded-circle bg-dark">
+                                    <i class="bx bxs-wallet-alt text-white font-size-20"></i>
+                                </div>
+                            </div>
+                            <div class="feed-item-list">
+                                <div>
+                                    <h5 class="font-size-16 mb-1">Payment Info</h5>
+                                    <p class="text-muted text-truncate mb-4">Choose your method of payment</p>
+                                </div>
+                                <div>
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div>
+                                              <label class="card-radio-label">
+                                                <input type="radio" formControlName="paymentmethod"
+                                                value="credit_card"
+                                                id="pay-methodoption1"
+                                                class="card-radio-input"
+                                                (change)="onPaymentMethodChange('credit_card')"
+                                                 class="card-radio-input">
+                                                <span class="card-radio py-3 text-center text-truncate">
+                                                  <i class="fa fa-credit-card d-block h2 mb-3"></i>
+                                                  Credit / Debit Card
+                                                </span>
+                                              </label>
+                                            </div>
+                                          </div>
+                                      
+                                          <div class="col-lg-3 col-sm-6">
+                                            <div>
+                                              <label class="card-radio-label">
+                                                <input type="radio" formControlName="paymentmethod"
+                                                value="paypal"
+                                                id="pay-methodoption2"
+                                                class="card-radio-input"
+                                                (change)="onPaymentMethodChange('paypal')"
+                                                [disabled]="billingForm.get('paymentmethod').value !== 'paypal'
+                                                 && billingForm.get('paymentmethod').value !== ''" class="card-radio-input">
+                                                <span class="card-radio py-3 text-center text-truncate">
+                                                  <i class="fa fa-cc-paypal d-block h2 mb-3" style="font-size:30px"></i>
+                                                  Paypal
+                                                </span>
+                                              </label>
+                                            </div>
+                                          </div>
+                                      
+                                          <div class="col-lg-3 col-sm-6">
+                                            <div>
+                                              <label class="card-radio-label">
+                                                <input type="radio"formControlName="paymentmethod"
+                                                value="cash_on_delivery"
+                                                id="pay-methodoption3"
+                                                class="card-radio-input"
+                                                (change)="onPaymentMethodChange('cash_on_delivery')"
+                                                [disabled]="billingForm.get('paymentmethod').value !== 'cash_on_delivery' && billingForm.get('paymentmethod').value !== ''"
+                                                 class="card-radio-input">
+                                                <span class="card-radio py-3 text-center text-truncate">
+                                                  <i class="fa fa-money d-block h2 mb-3" style="font-size:30px"></i>
+                                                  Cash on Delivery
+                                                </span>
+                                              </label>
+                                            </div>
+                                          </div>
+
+                                          <div *ngIf="billingForm.get('paymentmethod')?.value=='' " class="text-danger">
+                                            Must Choose Payment Method
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col">
+                    <a href="\shop" class="btn btn-link text-muted">
+                        <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+                </div> <!-- end col -->
+                <div class="col">
+                    <div class="text-end mt-2 mt-sm-0">
+                      <button class="btn btn-success" (click)="showModal()" type="submit" 
+                      (click)="clearcart()" [disabled]="!showDetails&& productItems.length==0">
+                        <i class="mdi mdi-cart-outline me-1" ></i> Proceed
+                      </button>
+
+                      
+                      
+                      
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row-->
+        </div>
+
+        <div class="col-xl-4">
+            <div class="card checkout-order-summary">
+              <div class="card-body">
+                <div class="p-3 bg-light mb-3">
+                  <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2"></span></h5>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-centered mb-0 table-nowrap">
+                    <thead>
+                      <tr>
+                        <th class="border-top-0" style="width: 110px;" scope="col">Product</th>
+                        <th class="border-top-0" scope="col">Product Desc</th>
+                        <th class="border-top-0" scope="col">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of productItems">
+                        <th scope="row">
+                          <img [src]="item.productImageUrl" alt="product-img" title="product-img" class="avatar-lg rounded" />
+                        </th>
+                        <td>
+                          <h5 class="font-size-16 text-truncate">
+                            <a href="#" class="text-dark">{{ item.productName }}</a>
+                          </h5>
+                          <p class="text-muted mb-0">
+                            <i class="bx bxs-star text-warning"></i>
+                            <i class="bx bxs-star text-warning"></i>
+                            <i class="bx bxs-star text-warning"></i>
+                            <i class="bx bxs-star text-warning"></i>
+                            <i class="bx bxs-star-half text-warning"></i>
+                          </p>
+                          <p class="text-muted mb-0 mt-1" >$ {{ item.productPrice }}</p>
+                        </td>
+                        <td>$ {{ item.productPrice }}</td>
+                      </tr>
+          
+                      <tr>
+                        <td colspan="2">
+                          <h5 class="font-size-14 m-0">Sub Total :</h5>
+                        </td>
+                        <td> {{subtotal.toFixed(2) }}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <h5 class="font-size-14 m-0">Discount ({{ discount}}EGP) :</h5>
+                        </td>
+                        <td> {{ discount}}EGP</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <h5 class="font-size-14 m-0">Shipping Charge :</h5>
+                        </td>
+                        <td> {{ shippingCharge }} EGP</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          <h5 class="font-size-14 m-0">Total :</h5>
+                        </td>
+                        <td>{{ total.toFixed(2) }} EGP</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+    <!-- end row -->
+    
+</div>
+
+
+
+
+
+
+    <div 
+      class="modal fade" 
+      [style.display]="confirmpayment ? 'block' : 'none'" 
+      tabindex="-1" 
+      role="dialog"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"> Confirm Payment Process </h5>
+
+          </div>
+          <div class="modal-body">
+            <p>Complete this process</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success">Ok</button>
+            <button 
+              type="button" 
+              class="btn btn-secondary" 
+              (click)="closeModal()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+<router-outlet></router-outlet>

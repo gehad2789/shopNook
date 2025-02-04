@@ -1,1 +1,50 @@
-<p>customer-orders works!</p>
+<app-header></app-header>
+
+<div class="container mt-4">
+  <!-- 🔵 Carousel Section -->
+  <div class="carousel-container "*ngIf="carouselProducts.length!=0">
+    <h2 class="text-center rec">Your Latest Orders</h2>
+    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let product of carouselProducts; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+          <div class="card product-card p-3">
+            <img [src]="product.productImageUrl" class="card-img-top img-fluid" alt="{{ product.productName }}">
+            <div class="overlay"></div> <!-- Transparent lock effect -->
+            <div class="card-body">
+              <h5 class="card-title">{{ product.productName }}</h5>
+              <p class="card-text text-success">${{ product.productPrice }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  
+
+  <!-- 🔵 Suggestions Section -->
+  <div class="m-5 ">
+    <h3 class="text-center rec ">Recommended Products</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let product of suggestedProducts | slice:0:6">
+        <div class="card shadow-sm border-success text-center h-100 ">
+          <img [src]="product.productImageUrl" class="card-img-top p-3" alt="{{ product.productName }}">
+          <div class="card-body">
+            <h3 class="card-title text-success">{{ product.productName }}</h3>
+            <p class="card-text text-muted h6">${{ product.productPrice }}</p>
+            <button class=" btn btn-dark" (click)="addtocart(product)">Order now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,63 @@
+<div class="container p-5">
+  <div class="py-3 text-success">
+    <h1 class="text-center fs-1 fw-bold pt-5">We Bring The Market To Your Home</h1>
+  </div>
+
+  <!-- Section 1: All Categories as Buttons -->
+  <p class="text-center pb-4">
+    Discover our handpicked selection of top-rated products. From must-have essentials to trendy favorites, find what you need to elevate your lifestyle.
+  </p>
+  <div class="d-flex flex-wrap justify-content-center gap-3 p-4">
+    <button
+      class="btn btn-success btn-lg"
+      *ngFor="let cat of catList"
+      (click)="navigate(cat.categoryId)"
+    >
+      {{ cat.categoryName }}
+    </button>
+  </div>
+
+  <!------------------- If chosen category isn't empty ---------------------->
+  <div class="card h-auto bg-light" *ngIf="filterByCategory.length != 0">
+    <div class="container my-3">
+      <!-- Bootstrap Row -->
+      <div class="row">
+        <!-- Loop through the product list -->
+        <div class="col-md-3 mb-4" *ngFor="let product of productsList | slice: 0: visibleProducts">
+          <!-- Card -->
+          <div class="card h-100">
+            <img
+              class="card-img-top h-75"
+              [src]="product.productImageUrl"
+              alt="Card image"
+              style="width: 100%"
+            />
+            <div class="card-body">
+              <h4 class="card-title">{{ product.productName }}</h4>
+              <p class="card-text">{{ product.categoryName }}</p>
+              <span class="card-text bg-secondary text-light fw-bold px-2 py-1 rounded">{{ product.productPrice }} EGP</span>
+
+
+              <div class="text-center">
+                <button class="btn btn-dark m-2" (click)="addtocart(product)">Add to Cart</button>
+              
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Show More Button -->
+      <div class="text-center mt-4" *ngIf="visibleProducts < productsList.length">
+        <button class="btn btn-outline-success" (click)="showMoreProducts()">
+          Show More <i class="fas fa-arrow-down"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+

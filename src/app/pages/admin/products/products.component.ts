@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, viewChild ,OnInit} from '@angular/core';
 import { FormsModule, ReactiveFormsModule , NgForm} from '@angular/forms';
 import { ProductService } from '../../../services/productservice/product.service';
-import { LoginService } from '../../../services/loginservice/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -50,10 +49,22 @@ export class ProductsComponent implements OnInit{
   
 
   getAllProducts() {
-    this.prdservice.getProduct().subscribe(
-      (data: any) => this.prdList= data.data ,  //to accssess data.json
-      error => console.error('Error fetching categories:', error)
-    );
+      this.prdservice.getAllProducts().subscribe(
+        (data: any) => {
+          // Use Map to filter out products with duplicate image URLs
+          const uniqueProducts = Array.from(
+            new Map(data.map((item: any) => [item.productImageUrl, item])).values()
+          );
+          /**data.map((item) => [item.imgUrl, item]) → Creates key-value pairs with imgUrl as the key.
+  new Map(...).values() → Removes duplicates because Map only keeps unique keys.
+  Array.from(...) → Converts back to an array. */
+    
+          this.prdList = uniqueProducts.sort(()=>Math.random()-0.5);
+        },
+        error => console.error('Error fetching products:', error)
+      );
+    
+ 
 
   }
 

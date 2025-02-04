@@ -1,27 +1,35 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand text-success p-2 h1 border border-success rounded-circle" href="javascript:void(0)">ShopNook</a>
+      <a class="navbar-brand text-success p-3 h1 fw-bold" href="javascript:void(0)" 
+      routerLink="/products">ShopNook </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mynavbar">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" routerLink="/products"  >Products</a>
+            <a class="nav-link" href="javascript:void(0)" routerLink="/cartAdmin"  >Monthly Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" routerLink="/cat">Category</a>
+            <a class="nav-link" href="javascript:void(0)" routerLink="/cat">Categories </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">Home</a>
+            <a class="nav-link" href="javascript:void(0)" routerLink="/company">Componies</a>
           </li>
 
         </ul>
 
-        <form class="d-flex">
-          <input class="form-control me-2 bg-light" type="text" placeholder="Search" >
+
+
+
+
+        <!---search-->
+
+        <!-- <form class="d-flex">
+          <input class="form-control me-2 bg-light" type="text" placeholder="Search" 
+          >
           <button class="btn btn-success" type="button" >Search</button>
-        </form>
+        </form> -->
       </div>
     </div>
   </nav>
@@ -31,4 +39,3 @@
     <router-outlet></router-outlet>
   </div>
   
-  <router-outlet></router-outlet>

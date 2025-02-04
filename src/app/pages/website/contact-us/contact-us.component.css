@@ -1,0 +1,63 @@
+body {
+    background-color: #ffffff; /* White background */
+    color: #333; /* Dark gray text */
+    font-family: Arial, sans-serif;
+  }
+
+  .contact-section {
+    padding: 80px 0;
+    background-color: #f8f9fa; /* Light gray background */
+  }
+
+  .contact-section h2 {
+    color: #28a745; /* Green heading */
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .contact-section p {
+    font-size: 1.1rem;
+    color: #333; /* Dark gray text */
+  }
+
+  .contact-section .form-control {
+    border-radius: 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+
+  .contact-section .form-control:focus {
+    border-color: #28a745; /* Green border on focus */
+    box-shadow: none;
+  }
+
+  .contact-section .btn-primary {
+    background-color: #28a745; /* Green button */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+  }
+
+  .contact-section .btn-primary:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+
+  .contact-section .card {
+    border: 2px solid #28a745; /* Green border */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .contact-section .card h4 {
+    color: #28a745; /* Green heading */
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .contact-section .card p {
+    font-size: 1.1rem;
+    color: #333; /* Dark gray text */
+  }

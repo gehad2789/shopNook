@@ -1,0 +1,74 @@
+{
+    "companies": [
+      {
+        "name": "Fresh Farms Egypt",
+        "address": "123 Nile Corniche, Cairo, Egypt",
+        "phones": ["+20-2-12345678", "+20-100-1234567"],
+        "emails": ["info@freshfarms-egypt.com", "sales@freshfarms-egypt.com"],
+        "offers": ["10% off on bulk orders of oranges", "Free shipping for orders above EGP 5000"]
+      },
+      {
+        "name": "Beauty Glow Egypt",
+        "address": "456 Zamalek St, Cairo, Egypt",
+        "phones": ["+20-2-98765432"],
+        "emails": ["contact@beautyglow-egypt.com"],
+        "offers": ["Buy 1 get 1 free on all skincare products", "20% off on makeup"]
+      },
+      {
+        "name": "Elegant Apparel Egypt",
+        "address": "789 Maadi St, Cairo, Egypt",
+        "phones": ["+20-2-65432109"],
+        "emails": ["support@elegantapparel-egypt.com"],
+        "offers": ["Free customization on orders above EGP 3000", "Seasonal sale: Up to 50% off"]
+      },
+      {
+        "name": "Golden Harvest Oils Egypt",
+        "address": "321 Fayoum Rd, Fayoum, Egypt",
+        "phones": ["+20-84-1234567"],
+        "emails": ["sales@goldenharvest-egypt.com"],
+        "offers": ["Discount on first order: 15% off", "Free sample pack with every purchase"]
+      },
+      {
+        "name": "Bread Bliss Bakery Egypt",
+        "address": "654 Alexandria St, Alexandria, Egypt",
+        "phones": ["+20-3-87654321"],
+        "emails": ["orders@breadbliss-egypt.com"],
+        "offers": ["Buy 2 loaves, get 1 free", "Free delivery for local orders"]
+      },
+      {
+        "name": "Tropical Fruits Egypt",
+        "address": "987 Aswan Rd, Aswan, Egypt",
+        "phones": ["+20-97-2345678"],
+        "emails": ["info@tropicalfruits-egypt.com"],
+        "offers": ["Seasonal discounts on mangoes and guavas", "Free fruit basket with orders above EGP 2000"]
+      },
+      {
+        "name": "Pure Beauty Egypt",
+        "address": "135 Luxor St, Luxor, Egypt",
+        "phones": ["+20-95-5432109"],
+        "emails": ["support@purebeauty-egypt.com"],
+        "offers": ["10% off on first purchase", "Free gift with orders above EGP 1000"]
+      },
+      {
+        "name": "Urban Threads Egypt",
+        "address": "246 Heliopolis St, Cairo, Egypt",
+        "phones": ["+20-2-67891234"],
+        "emails": ["sales@urbanthreads-egypt.com"],
+        "offers": ["Flash sale: 30% off on all jeans", "Free returns within 30 days"]
+      },
+      {
+        "name": "Healthy Crude Oils Egypt",
+        "address": "369 Siwa Oasis Rd, Siwa, Egypt",
+        "phones": ["+20-46-1234567"],
+        "emails": ["info@healthycrude-egypt.com"],
+        "offers": ["Buy 1 liter, get 500ml free", "Free shipping on all orders"]
+      },
+      {
+        "name": "Artisan Breads Egypt",
+        "address": "480 Sharm El Sheikh St, Sharm El Sheikh, Egypt",
+        "phones": ["+20-69-7890123"],
+        "emails": ["orders@artisanbreads-egypt.com"],
+        "offers": ["10% off on subscription plans", "Free bread knife with orders above EGP 500"]
+      }
+    ]
+  }

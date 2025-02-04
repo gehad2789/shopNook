@@ -1,0 +1,59 @@
+<div class="parent">
+    <form class="main-register" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="left-register">
+            <h1>Register Here</h1>
+            <img src="https://i.postimg.cc/YC13sX2Z/Astronaut-cuate.png" class="left-register-img" alt="astronaut image">
+        </div>
+
+        <div class="right-register">
+            <div class="card-register">
+                <h1>Register</h1>
+
+                <!-- User Name -->
+                <div class="textfield">
+                    <label for="user">User</label>
+                    <input type="text" id="user" placeholder="User" formControlName="name">
+                    <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                        <small *ngIf="form.get('name')?.errors?.['required']" class="text-danger">User is required.</small>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="textfield">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password" formControlName="password">
+                    <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+                        <small *ngIf="form.get('password')?.errors?.['required']" class="text-danger">Password is required.</small>
+                        <small *ngIf="form.get('password')?.errors?.['pattern']" class="text-danger">
+                            Password must contain at least one letter and one number.
+                        </small>
+                        <small *ngIf="form.get('password')?.errors?.['minlength']" class="text-danger">
+                            Password must be at least 8 characters long.
+                        </small>
+                        <small *ngIf="form.get('password')?.errors?.['maxlength']" class="text-danger">
+                            Password cannot be more than 18 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="textfield">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
+                    <div *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched">
+                        <small *ngIf="form.get('confirmPassword')?.errors?.['required']" class="text-danger">Confirm password is required.</small>
+                        <small *ngIf="form.get('confirmPassword')?.errors?.['mustMatch']" class="text-danger">
+                            Passwords must match.
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Register Button -->
+                <button class="btn-register" type="submit" [disabled]="form.invalid">Register</button>
+                
+                <a class="text-success text-start log" (click)="navigateToLogin()" >Already have an account? Login</a>
+            </div>
+        </div>
+    </form>
+</div>
+<router-outlet></router-outlet>
