@@ -9,8 +9,10 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          
           <a class="p-2 text-dark fw-semibold text-uppercase text-decoration-none" href="#" routerLink="/contact">Contact us</a>
           <a class="p-2 text-dark fw-semibold text-uppercase text-decoration-none" href="#" routerLink="/about">About us</a>
 
@@ -27,12 +29,12 @@
             </ul>
           </li>
 
+         
+
           <!-- Empty Cart -->
           <ng-container *ngIf="cartlist.length == 0">
 
-            <li class="nav-item">
-              <a class="nav-link"><i class="fa-solid fa-magnifying-glass fs-5" style="color: black;"></i></a>
-            </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown3" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -65,7 +67,6 @@
         </div>
       </li>
       <li class="p-2">
-        <!-- Normal list items instead of buttons -->
         <ul class="list-unstyled">
           <div class="d-flex flex-column gap-2">
             <button class="btn btn-success btn-sm rounded w-100" routerLink="/cart">
@@ -95,10 +96,41 @@
             </ul>
           </li>
 
+          <li class="nav-item">
+            <div class="input-group">
+              <input
+  type="text"
+  [(ngModel)]="searchTerm"
+  (input)="onSearchChange()"
+  placeholder="Search..."
+  class="form-control"
+  aria-label="Search"
+  aria-describedby="search-button"
+/>
+              <button class="btn btn-outline-secondary" type="button" id="search-button" >
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+
+              <li class="nav-item dropdown"  >
+                <div *ngIf="searchTerm" class="dropdown-menu show p-2 w-100">
+                  <ul class="list-unstyled mb-0">
+                    <li *ngFor="let product of filteredProducts">
+                      <a class="dropdown-item" [routerLink]="['/product', product.productId]">
+                        {{ product.productName }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+              
+            </div>
+          </li>
+
           <!-- LogOut Button -->
           <li class="nav-item ms-4">
-            <button class="btn btn-sm btn-danger logOutBtn" routerLink="/register" data-bs-toggle="tooltip" data-bs-title="Log out">
-              <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <button class="btn btn-sm btn-danger log Out" routerLink="/register" >
+              <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
             </button>
           </li>
         </ul>

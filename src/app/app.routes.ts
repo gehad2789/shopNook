@@ -16,6 +16,7 @@ import { CustomerOrdersComponent } from './pages/website/customer-orders/custome
 import { ProductsComponent } from './pages/admin/products/products.component';
 import { RegisterComponent } from './pages/website/register/register.component';
 import { ComponiesComponent } from './pages/admin/componies/componies.component';
+import { OneProductComponent } from './pages/website/one-product/one-product.component';
 
 
 export const routes: Routes = [
@@ -96,6 +97,8 @@ export const routes: Routes = [
                     path:'checkout',
                     component:ChekoutComponent
                 }
+                ,  { path: 'product/:productId', component: OneProductComponent }
+
             ]
         }, 
 

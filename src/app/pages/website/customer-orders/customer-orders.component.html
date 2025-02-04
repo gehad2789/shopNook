@@ -39,7 +39,7 @@
           <div class="card-body">
             <h3 class="card-title text-success">{{ product.productName }}</h3>
             <p class="card-text text-muted h6">${{ product.productPrice }}</p>
-            <button class=" btn btn-dark">Order now</button>
+            <button class=" btn btn-dark" (click)="addtocart(product)">Order now</button>
           </div>
         </div>
       </div>

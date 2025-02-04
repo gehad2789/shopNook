@@ -3,6 +3,7 @@ import {  RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
+import { SearchService } from '../../../services/searchservice/search.service';
 
 
 
@@ -14,6 +15,7 @@ import { FooterComponent } from "../footer/footer.component";
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent  {
+  
  
 };
 

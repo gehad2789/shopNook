@@ -43,18 +43,29 @@ export class ProductshowComponent implements OnInit {
 
   // Fetch all products from the API
   getAllProducts() {
-    this.prdservice.getProduct().subscribe(
+    this.prdservice.getAllProducts().subscribe(
       (data: any) => {
-        this.productsList = data.data; // Assign fetched products to productsList
-        this.products = data.data; // Assign fetched products to products (for filtering)
+        // Use Map to filter out products with duplicate image URLs
+        const uniqueProducts = Array.from(
+          new Map(data.map((item: any) => [item.productImageUrl, item])).values()
+        );
+        /**data.map((item) => [item.imgUrl, item]) → Creates key-value pairs with imgUrl as the key.
+new Map(...).values() → Removes duplicates because Map only keeps unique keys.
+Array.from(...) → Converts back to an array. */
+  
+        this.productsList = uniqueProducts.sort(()=>Math.random()-0.5);
       },
-      (error) => console.error('Error fetching products:', error)
+      error => console.error('Error fetching products:', error)
     );
+  
+
+
   }
+
 
   // Fetch products by category ID
   getproductbycatid() {
-    this.prdservice.getProduct().subscribe((products) => {
+    this.prdservice.getProduct().subscribe((products:any[]) => {
       this.catList = Array.from(
         new Set(products.map((product: any) => product.categoryName))
       ).map((categoryName) => {
@@ -93,7 +104,9 @@ export class ProductshowComponent implements OnInit {
       productPrice: product.productPrice,
     };
     this.cartser.addToCart(addtocartobj); // Add product to cart
+    window.location.reload()
     console.log('Product added to cart');
+    
   }
 
   // Remove product from cart

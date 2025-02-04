@@ -1,0 +1,16 @@
+
+
+<div *ngIf="product" class="d-flex justify-content-center align-items-center vh-100 ">
+    <div class="card" style="width: 18rem; border: 2px solid green;">
+      <img [src]="product.productImageUrl" class="card-img-top mx-auto d-block" alt="Product Image">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ product.productName }}</h5>
+        <p class="card-text">{{ product.productDescription }}</p>
+        <p class="card-text"><strong>Price:</strong> ${{ product.productPrice }}</p>
+        <p class="card-text"><strong>Category:</strong> {{ product.categoryName }}</p>
+        <p class="card-text"><strong>Delivery Time:</strong> {{ product.deliveryTimeSpan }}</p>
+        <button class="btn btn-success" (click)="addtocart(product)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+  

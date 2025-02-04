@@ -49,6 +49,25 @@ Array.from(...) → Converts back to an array. */
       error => console.error('Error fetching products:', error)
     );
   }
+
+  
+  // Add product to cart
+  addtocart(product: any) {
+    let addtocartobj = {
+      // Data to be sent to the cart
+      CartId: 0,
+      CustId: 397,
+      ProductId: product.productId,
+      Quantity: 1,
+      AddedDate: new Date(),
+      productName: product.productName,
+      productImageUrl: product.productImageUrl,
+      productPrice: product.productPrice,
+    };
+    this.cartserv.addToCart(addtocartobj); // Add product to cart
+    console.log('Product added to cart');
+    this.carouselProducts=this.cartserv.getCart();
+  }
   
   
 
