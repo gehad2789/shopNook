@@ -67,6 +67,7 @@ Array.from(...) → Converts back to an array. */
     this.cartserv.addToCart(addtocartobj); // Add product to cart
     console.log('Product added to cart');
     this.carouselProducts=this.cartserv.getCart();
+    console.log(this.cartserv.getCart())
   }
   
   
