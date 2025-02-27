@@ -1,0 +1,14 @@
+{"message":"","result":true,"data":[
+    {"categoryId":5,"categoryName":"Beauty","parentCategoryId":0,"userId":null},
+    {"categoryId":56,"categoryName":"Foodgrains","parentCategoryId":0,"userId":null},
+    {"categoryId":58,"categoryName":"Drinks","parentCategoryId":0,"userId":null},
+    {"categoryId":59,"categoryName":"Snacks","parentCategoryId":0,"userId":null},
+    {"categoryId":61,"categoryName":"Cuts & Sprouts","parentCategoryId":55,"userId":null},
+    {"categoryId":63,"categoryName":"Art&Books","parentCategoryId":55,"userId":null},
+    {"categoryId":64,"categoryName":"Flower Bouquets","parentCategoryId":55,"userId":null},
+    {"categoryId":67,"categoryName":"Edible Oils","parentCategoryId":56,"userId":null},
+    {"categoryId":68,"categoryName":"Bakery Snacks","parentCategoryId":57,"userId":null},
+  {"categoryId":159,"categoryName":"Fruits","parentCategoryId":0,"userId":0},
+  {"categoryId":61,"categoryName":"clothes","parentCategoryId":0,"userId":null}
+
+  ]}
